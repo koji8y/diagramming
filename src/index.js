@@ -14,7 +14,7 @@ import { create } from "diagram-js/lib/model";
 import { printKeyValues, printKeys } from "./util/print_utils.ts"
 // import { Shape } from "diagram-js/lib/model";
 const canvas = diagram.get('canvas');
-printKeys(canvas, {label: 'canvas', indent: 2})
+// printKeys(canvas, {label: 'canvas', indent: 2})
 const root = create('root', {
     id: 'root1',
     x: 50, y: 50,
