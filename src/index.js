@@ -1,20 +1,3 @@
-function printKeyValues(obj, opt = {label: '', indent: 0}, printValues = true) {
-    let indent = ''
-    for (let i = 0; i < opt.indent || 0; i++) {
-        indent = `${indent} `
-    }
-    if (typeof obj !== 'object') {
-        console.log(`${indent}${opt.label ? opt.label + (printValues ? '=' : '') : ''}${printValues ? obj : ''}`)
-        return
-    }
-    for (const key in obj) {
-        console.log(`${indent}${opt.label || ''}[${key}]` + (printValues ? `=${obj[key]}` : ''))
-    }
-}
-function printKeys(obj, opt = {label: '', indent: 0}) {
-    printKeyValues(obj, opt, false)
-}
-
 import { Hello } from "./hello.js";
 
 new Hello("Taro").greet();
@@ -28,6 +11,7 @@ const diagram = new Diagram({
 // printKeyValues(diagram, {label: 'diagram', indent: 2})
 
 import { create } from "diagram-js/lib/model";
+import { printKeyValues, printKeys } from "./util/print_utils.ts"
 // import { Shape } from "diagram-js/lib/model";
 const canvas = diagram.get('canvas');
 printKeys(canvas, {label: 'canvas', indent: 2})
