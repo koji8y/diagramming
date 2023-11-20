@@ -1,0 +1,19 @@
+# Ref: https://zenn.dev/sprout2000/articles/9d026d3d9e0e8f
+npm init --yes
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+npm install i -D webpack-dev-server # equivalent to npm install --save-dev webpack-dev-server
+npm install --save-dev @babel/core
+npm install --save-dev @babel/preset-env
+npm install --save-dev babel-loader
+"create .babelrc"
+"create webpack.config.js"
+#npm install diagram-js
+npm install --save-dev diagram-js
+mkdir src
+"write src/index.js and referenced code."
+./node_modules/.bin/webpack
+"write dist/index.html"
+#"npx webpack"
+"npx webpack serve --mode development"
+# npm run start
