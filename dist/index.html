@@ -2,11 +2,65 @@
     <head>
         <meta charset="utf-8">
         <title>trial1</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.css" />
     </head>
     <body>
+        <!-- JointJS -->
+        <h3>JointJS</h3>
+        <div id="jointjs_holder"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.1/backbone.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.js"></script>    
+        <script type="text/javascript">
+            const namespace = joint.shapes;
+            const graph = new joint.dia.Graph({}, { cellNamespace: namespace });
+            const paper = new joint.dia.Paper({
+                el: document.getElementById('jointjs_holder'),
+                model: graph,
+                width: 1000,
+                height: 600,
+                gridSize: 1,
+                drawGrid: true,
+                background: {
+                    color: 'silver'
+                },
+                cellViewNamespace: namespace
+            });
+            const rect = new joint.shapes.standard.Rectangle();
+            rect.position(250, 100);
+            rect.resize(100, 40);
+            rect.attr({
+                body: {
+                    fill: 'blue'
+                },
+                label: {
+                    text: 'Hello',
+                    fill: 'white'
+                }
+            });
+            rect.addTo(graph);
+
+            const rect2 = rect.clone();
+            rect2.translate(300, 200);
+            rect2.attr('label/text', 'World!');
+            rect2.addTo(graph);
+
+            const link = new joint.shapes.standard.Link();
+            link.source(rect);
+            link.target(rect2);
+            link.addTo(graph);
+
+        </script>
+
+        <!-- HTML5 canvas -->
+        <h3>HTML5 canvas</h3>
         <div>
-            <canvas id="fig" width="1000px" height="600px" style="background-color: silver"></canvas>
+            <canvas id="fig" width="1000px" height="600px" style="background-color: rgb(227, 235, 185)"></canvas>
         </div>
+
+        <!-- diagram-js -->
+        <h3>diagram-js</h3>
         <div id="canvas" style="width: 100%; height: 600px;"></div>
         <script src="./main.js"></script>
     </body>
