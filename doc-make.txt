@@ -6,6 +6,8 @@ npm install i -D webpack-dev-server # equivalent to npm install --save-dev webpa
 npm install --save-dev @babel/core
 npm install --save-dev @babel/preset-env
 npm install --save-dev babel-loader
+npm install --save-dev jointjs
+npm install --save-dev css-loader style-loader
 "create .babelrc"
 "create webpack.config.js"
 #npm install diagram-js
@@ -17,3 +19,5 @@ mkdir src
 #"npx webpack"
 npx webpack serve --mode development
 # npm run start
+
+"read https://resources.jointjs.com/tutorial/introduction"

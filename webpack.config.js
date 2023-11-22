@@ -14,6 +14,10 @@ const config = {
                 test: /\.[jt]s$/,
                 use: 'babel-loader'
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            }
         ],
     },
 };
