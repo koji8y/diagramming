@@ -1,2 +1,4 @@
 #!/bin/sh
-exec npx webpack serve --mode development
+set -x
+#exec npx webpack serve --mode development
+npm run start

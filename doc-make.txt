@@ -15,5 +15,5 @@ mkdir src
 ./node_modules/.bin/webpack
 "write dist/index.html"
 #"npx webpack"
-"npx webpack serve --mode development"
+npx webpack serve --mode development
 # npm run start
