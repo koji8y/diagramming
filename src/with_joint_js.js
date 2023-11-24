@@ -153,11 +153,34 @@ function draw_sample_view() {
             }
         }
     });
-    stencil_shape1.on('change:position', function(element, pos) {
+    false && stencil_shape1.on('change:position', function(element, pos) {
         // const pos = stencil_base1.position(element.get('position'))
         console.log(`moved: ${pos.x}, ${pos.y}`);
     });
+    true && paper.on('change:position', function(element, pos) {
+        // const pos = stencil_base1.position(element.get('position'))
+        console.log(`(p)moved: ${pos.x}, ${pos.y}`);
+    });
+    true && stencil_shape1.on('transition:end', function(element, pos) {
+        console.log(`transition_end: ${keys(pos)}`);
+    });
+    true && paper.on('element:pointerdblclick', function(element, evt) {
+        console.log(`Dclicked: ${element.id} (other_keys: ${keys(evt)})`);
+    });
+    true && paper.on('element:pointerclick', function(element, evt) {
+        console.log(`Sclicked: ${element.id} (other_keys: ${keys(evt)})`);
+    });
+    true && paper.on('element:pointerup', function(element, evt) {
+        console.log(`p_up: ${element.id} (other_keys: ${keys(evt)})`);
+    });
     graph.addCells([stencil_base1, stencil_shape1]);
+}
+
+function keys(obj) {
+    if (typeof obj !== 'object') {
+        return [];
+    }
+    return Object.keys(obj);
 }
 
 draw_sample_view();
