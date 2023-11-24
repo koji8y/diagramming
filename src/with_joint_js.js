@@ -125,6 +125,39 @@ function draw_sample_view() {
     }
 
     console.log(graph.toJSON());
+
+    // Pseudo Stencil
+    const stencil_base1 = new joint.shapes.standard.Rectangle({
+        position: { x: 10, y: 150 },
+        size: { width: 100, height: 40 },
+        attrs: {
+            body: {
+                fill: 'blue'
+            },
+            label: {
+                text: 'Baz (base)',
+                fill: 'white'
+            }
+        }
+    });
+    const stencil_shape1 = new joint.shapes.standard.Rectangle({
+        position: { x: 10, y: 150 },
+        size: { width: 100, height: 40 },
+        attrs: {
+            body: {
+                fill: 'blue'
+            },
+            label: {
+                text: 'Baz',
+                fill: 'white'
+            }
+        }
+    });
+    stencil_shape1.on('change:position', function(element, pos) {
+        // const pos = stencil_base1.position(element.get('position'))
+        console.log(`moved: ${pos.x}, ${pos.y}`);
+    });
+    graph.addCells([stencil_base1, stencil_shape1]);
 }
 
 draw_sample_view();
