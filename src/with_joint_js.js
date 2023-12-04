@@ -135,11 +135,12 @@ function draw_sample_view() {
                 fill: 'blue'
             },
             label: {
-                text: 'Baz (base)',
+                text: 'Baz (background)',
                 fill: 'white'
             }
         }
     });
+    const stencil_to_original_position = {};
     const stencil_shape1 = new joint.shapes.standard.Rectangle({
         position: { x: 10, y: 150 },
         size: { width: 100, height: 40 },
@@ -148,11 +149,12 @@ function draw_sample_view() {
                 fill: 'blue'
             },
             label: {
-                text: 'Baz',
+                text: 'Baz (as stencil)',
                 fill: 'white'
             }
         }
     });
+    stencil_to_original_position[stencil_shape1.id] = stencil_shape1.position();
     false && stencil_shape1.on('change:position', function(element, pos) {
         // const pos = stencil_base1.position(element.get('position'))
         console.log(`moved: ${pos.x}, ${pos.y}`);
@@ -172,6 +174,20 @@ function draw_sample_view() {
     });
     true && paper.on('element:pointerup', function(element, evt) {
         console.log(`p_up: ${element.id} (other_keys: ${keys(evt)})`);
+    });
+    true && paper.on('cell:pointerup', function(cellView, evt) {
+        console.log(`cell:p_up: ${cellView.id}`);
+        if (Object.keys(stencil_to_original_position).includes(cellView.model.id)) {
+            console.log('dup')
+            const shape_element = cellView.model
+            const new_element = shape_element.clone();
+            const label_text = shape_element.attr('label/text');
+            new_element.attr('label/text', label_text.replace(/\(as stencil\)/, ''));
+            const pos_original = stencil_to_original_position[shape_element.id];
+            const pos_after = shape_element.position();
+            shape_element.translate(pos_original.x - pos_after.x, pos_original.y - pos_after.y);
+            graph.addCells([new_element]);
+        }
     });
     graph.addCells([stencil_base1, stencil_shape1]);
 }
