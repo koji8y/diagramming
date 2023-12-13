@@ -86,11 +86,20 @@ function draw_sample_view() {
         position: { x: 460, y: 130},
         size: { width: 10, height: 10 },
     });
-    graph.addCells([rect4, circ1, circ2])
+    const embedded_image = new joint.shapes.standard.Image({
+        position: { x: 520, y: 105},
+        size: { width: 30, height: 30 },
+        attrs: {
+            image: {xlinkHref: 'chibimal.ico'},
+            root: {title: 'Image embedding sample'},
+        }
+    });
+    graph.addCells([rect4, circ1, circ2, embedded_image])
     // circ1.addTo(graph);
     // rect4.addTo(graph);
     rect4.embed(circ1);
     rect4.embed(circ2)
+    rect4.embed(embedded_image)
 
     const link34 = new joint.shapes.standard.Link({
         source: { id: rect3.id },
