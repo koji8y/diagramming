@@ -83,8 +83,8 @@ function draw_sample_view() {
         size: { width: 10, height: 10 },
     });
     const circ2 = new joint.shapes.standard.Circle({
-        position: { x: 520, y: 115},
-        size: { width: 20, height: 20 },
+        position: { x: 460, y: 130},
+        size: { width: 10, height: 10 },
     });
     graph.addCells([rect4, circ1, circ2])
     // circ1.addTo(graph);
